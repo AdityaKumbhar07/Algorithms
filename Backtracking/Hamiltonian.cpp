@@ -1,6 +1,3 @@
-// This program gives first possible solution of hamiltonian cycle
-// First vertex can give any in the first call of hamil function
-
 #include<iostream>
 using namespace std;
 
@@ -27,11 +24,11 @@ bool hamil(int vert) {
     // Check every adjacent node
     for (int i = 0; i < Total_vert; i++) {
         // check if it is not repeated and connected to previous vert
-        if (!visit[i] && g[path[vert - 1]][path[i]]) {
+        if (!visit[i] && g[path[vert - 1]][i]) {
             path[vert] = i;
             visit[i] = 1;
             if (hamil(vert + 1)) return true;
-            visit[1] = 0; // Backtrack
+            visit[i] = 0; // Backtrack
         }
     }
     return false;
@@ -39,7 +36,7 @@ bool hamil(int vert) {
 int main() {
     visit[0] = 1; // Starting vertex 0 as visited
     path[0] = 0; // First vertex to path
-    if (hamil(0)){
+    if (hamil(1)){
         for (auto x : path) {
             cout<<x<<"->";}
         cout<<path[0];}
